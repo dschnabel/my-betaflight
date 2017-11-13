@@ -1,0 +1,33 @@
+Change default camera controls
+
+--- src/main/fc/rc_controls.c	2017-10-15 12:17:38.000000000 -0700
++++ src-patched/main/fc/rc_controls.c	2017-11-05 17:53:58.065773787 -0800
+@@ -319,22 +319,22 @@
+ #endif
+ 
+ #ifdef USE_CAMERA_CONTROL
+-    if (rcSticks == THR_CE + YAW_HI + PIT_CE + ROL_CE) {
++    if (rcSticks == ##cameraControl.enter##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_ENTER, 0);
+         repeatAfter(3 * STICK_DELAY_MS);
+-    } else if (rcSticks == THR_CE + YAW_CE + PIT_CE + ROL_LO) {
++    } else if (rcSticks == ##cameraControl.left##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_LEFT, 0);
+         repeatAfter(3 * STICK_DELAY_MS);
+-    } else if (rcSticks == THR_CE + YAW_CE + PIT_HI + ROL_CE) {
++    } else if (rcSticks == ##cameraControl.up##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_UP, 0);
+         repeatAfter(3 * STICK_DELAY_MS);
+-    } else if (rcSticks == THR_CE + YAW_CE + PIT_CE + ROL_HI) {
++    } else if (rcSticks == ##cameraControl.right##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_RIGHT, 0);
+         repeatAfter(3 * STICK_DELAY_MS);
+-    } else if (rcSticks == THR_CE + YAW_CE + PIT_LO + ROL_CE) {
++    } else if (rcSticks == ##cameraControl.down##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_DOWN, 0);
+         repeatAfter(3 * STICK_DELAY_MS);
+-    } else if (rcSticks == THR_LO + YAW_CE + PIT_HI + ROL_CE) {
++    } else if (rcSticks == ##cameraControl.upLong##) {
+         cameraControlKeyPress(CAMERA_CONTROL_KEY_UP, 2000);
+     }
+ #endif
