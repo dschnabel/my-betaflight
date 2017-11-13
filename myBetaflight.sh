@@ -80,12 +80,12 @@ for PATCH in $(cat $CONFIG_FILE | egrep -v "^ *#" | egrep "\.patch *= *yes *$" |
         
         cd betaflight-$RELEASE/
         echo "Applying patch releases/$RELEASE/$PATCH.patch..."
-        patch -p0 < ../releases/$RELEASE/$PATCH.patch
+        patch -p1 < ../releases/$RELEASE/$PATCH.patch
+        cd ..
         
         for KEY in "${!CONFIG[@]}"; do
             sed -i "s/##$KEY##/${CONFIG[$KEY]}/g" $SOURCE_FILES
         done
-        cd ..
     else
         echo "No patch file found for $PATCH. Skipping..."
     fi
@@ -99,7 +99,7 @@ if [ -z "$(docker images | grep betaflight/betaflight-build)" ]; then
     echo
 fi
 
-echo "Building patched version of Betaflight... (this might take a few minutes)"
+echo "Building custom version of Betaflight... (this might take a few minutes)"
 set +e
 IFS=","
 for P in $PLATFORM; do

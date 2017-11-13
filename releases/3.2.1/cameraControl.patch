@@ -1,7 +1,7 @@
 Change default camera controls
 
---- src/main/fc/rc_controls.c	2017-10-15 12:17:38.000000000 -0700
-+++ src-patched/main/fc/rc_controls.c	2017-11-05 17:53:58.065773787 -0800
+--- betaflight-3.2.1/src/main/fc/rc_controls.c	2017-10-15 12:17:38.000000000 -0700
++++ betaflight-3.2.1-patched/src/main/fc/rc_controls.c	2017-11-05 17:53:58.065773787 -0800
 @@ -319,22 +319,22 @@
  #endif
  
