@@ -23,7 +23,8 @@ if [ -z "$RELEASE" ]; then
     exit 1
 fi
 if [ ! -d releases/$RELEASE ]; then
-    echo "Release $RELEASE not (yet) supported. Supported releases are:" $(ls releases)
+    RELEASES=$(ls -d releases/*/ | sed 's#^releases/\([0-9\.]\+\)/$#\1#g')
+    echo "Release $RELEASE not (yet) supported. Supported releases are:" $RELEASES
     exit 1
 fi
 
