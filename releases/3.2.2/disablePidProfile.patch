@@ -1,0 +1,14 @@
+Disable PID profile change via RC control
+
+diff -Naur betaflight-3.2.2/src/main/fc/rc_controls.c betaflight-3.2.2-patched/src/main/fc/rc_controls.c
+--- betaflight-3.2.2/src/main/fc/rc_controls.c	2017-11-10 16:08:19.000000000 -0800
++++ betaflight-3.2.2-patched/src/main/fc/rc_controls.c	2017-11-13 19:14:49.860636575 -0800
+@@ -250,7 +250,7 @@
+     else if (rcSticks == THR_LO + YAW_LO + PIT_CE + ROL_HI)     // ROLL right -> Profile 3
+         i = 3;
+     if (i) {
+-        changePidProfile(i - 1);
++        //changePidProfile(i - 1);
+         return;
+     }
+ 
