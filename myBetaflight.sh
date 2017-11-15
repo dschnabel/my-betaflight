@@ -22,6 +22,9 @@ if [ -z "$RELEASE" ]; then
     echo "Please set a release in $CONFIG_FILE (e.g. 3.2.1)"
     exit 1
 fi
+if [ "$RELEASE" = "latest" ]; then
+    RELEASE=$(ls -d releases/*/ | sed 's#^releases/\([0-9\.]\+\)/$#\1#g' | sort -n | tail -n1)
+fi
 if [ ! -d releases/$RELEASE ]; then
     RELEASES=$(ls -d releases/*/ | sed 's#^releases/\([0-9\.]\+\)/$#\1#g')
     echo "Release $RELEASE not (yet) supported. Supported releases are:" $RELEASES
@@ -98,9 +101,12 @@ if [ -z "$(docker images | grep betaflight/betaflight-build)" ]; then
     echo "Pulling docker image..."
     docker pull betaflight/betaflight-build
     echo
+else
+    echo "Updating local docker image..."
+    docker pull betaflight/betaflight-build >/dev/null
 fi
 
-echo "Building custom version of Betaflight... (this might take a few minutes)"
+echo "Building custom version of Betaflight $RELEASE... (this might take a few minutes)"
 set +e
 IFS=","
 for P in $PLATFORM; do

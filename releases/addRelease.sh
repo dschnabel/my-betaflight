@@ -106,7 +106,7 @@ for PATCH in $(ls $FROM/*.patch); do
     NEW_PATCH=$RELEASE/$(echo $PATCH | xargs basename)
     rm -f $NEW_PATCH
     while IFS= read -r line; do
-        if [ -n "$(echo $line | grep "^diff \-Naur")" ]; then
+        if [ -n "$(echo $line | grep "^diff ")" ]; then
             break
         fi
         echo $line >> $NEW_PATCH
